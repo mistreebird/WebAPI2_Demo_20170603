@@ -49,6 +49,46 @@ namespace WebAPI2_Demo_20170603.Controllers
             return Ok(Order);
         }
 
+        [Route("Clients/{id}/Orders/{orderId}")]
+        public IHttpActionResult GetClientOrder(int id,int orderId)
+        {
+            var Order = db.Order.Where(o => o.ClientId == id && o.OrderId == orderId);
+            if (Order == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(Order);
+        }
+
+        [Route("Clients/{id}/Orders/pending")]
+        public IHttpActionResult GetClientOrdersPending(int id)
+        {
+            var Order = db.Order.Where(o => o.ClientId == id && o.OrderStatus == "P");
+            if (Order == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(Order);
+        }
+
+        [Route("Clients/{id}/Orders/{*date}")]
+        public IHttpActionResult GetClientOrder(int id, DateTime date)
+        {
+            var Order = db.Order.Where(o => o.ClientId == id 
+            && o.OrderDate.Value.Year == date.Year 
+            && o.OrderDate.Value.Month == date.Month 
+            && o.OrderDate.Value.Day == date.Day);
+
+            if (Order == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(Order);
+        }
+
         // PUT: api/Clients/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutClient(int id, Client client)
