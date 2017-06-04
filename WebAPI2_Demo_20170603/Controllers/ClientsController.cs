@@ -49,7 +49,7 @@ namespace WebAPI2_Demo_20170603.Controllers
             return Ok(Order);
         }
 
-        [Route("Clients/{id}/Orders/{orderId}")]
+        [Route("Clients/{id}/Orders/{orderId:int}")]
         public IHttpActionResult GetClientOrder(int id,int orderId)
         {
             var Order = db.Order.Where(o => o.ClientId == id && o.OrderId == orderId);
@@ -61,8 +61,9 @@ namespace WebAPI2_Demo_20170603.Controllers
             return Ok(Order);
         }
 
+        [HttpGet]
         [Route("Clients/{id}/Orders/pending")]
-        public IHttpActionResult GetClientOrdersPending(int id)
+        public IHttpActionResult FindClientOrdersPending(int id)
         {
             var Order = db.Order.Where(o => o.ClientId == id && o.OrderStatus == "P");
             if (Order == null)
