@@ -12,12 +12,13 @@ using WebAPI2_Demo_20170603.Models;
 
 namespace WebAPI2_Demo_20170603.Controllers
 {
+    [RoutePrefix("Clients")]
     public class ClientsController : ApiController
     {
         private FabricsEntities db = new FabricsEntities();
 
         // GET: api/Clients
-        [Route("Clients")]
+        [Route("")]
         public IQueryable<Client> GetClient()
         {
             return db.Client;
@@ -25,7 +26,7 @@ namespace WebAPI2_Demo_20170603.Controllers
 
         // GET: api/Clients/5
         [ResponseType(typeof(Client))]
-        [Route("Clients/{id}")]
+        [Route("{id}")]
         public IHttpActionResult GetClient(int id)
         {
             Client client = db.Client.Find(id);
@@ -37,7 +38,7 @@ namespace WebAPI2_Demo_20170603.Controllers
             return Ok(client);
         }
 
-        [Route("Clients/{id}/Orders")]
+        [Route("{id}/Orders")]
         public IHttpActionResult GetClientOrders(int id)
         {
             var Order = db.Order.Where(o => o.ClientId == id);
@@ -49,7 +50,7 @@ namespace WebAPI2_Demo_20170603.Controllers
             return Ok(Order);
         }
 
-        [Route("Clients/{id}/Orders/{orderId:int}")]
+        [Route("{id}/Orders/{orderId:int}")]
         public IHttpActionResult GetClientOrder(int id,int orderId)
         {
             var Order = db.Order.Where(o => o.ClientId == id && o.OrderId == orderId);
@@ -62,7 +63,7 @@ namespace WebAPI2_Demo_20170603.Controllers
         }
 
         [HttpGet]
-        [Route("Clients/{id}/Orders/pending")]
+        [Route("~/Api/Clients/{id}/Orders/pending")]
         public IHttpActionResult FindClientOrdersPending(int id)
         {
             var Order = db.Order.Where(o => o.ClientId == id && o.OrderStatus == "P");
@@ -74,7 +75,7 @@ namespace WebAPI2_Demo_20170603.Controllers
             return Ok(Order);
         }
 
-        [Route("Clients/{id}/Orders/{*date}")]
+        [Route("{id}/Orders/{*date}")]
         public IHttpActionResult GetClientOrder(int id, DateTime date)
         {
             var Order = db.Order.Where(o => o.ClientId == id 
