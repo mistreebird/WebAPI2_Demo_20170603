@@ -50,6 +50,56 @@ namespace WebAPI2_Demo_20170603.Controllers
             return Json(db.Client.Find(id));
         }
 
+        [Route("type4/{id}")]
+        public HttpResponseMessage GetClientType4(int id)
+        {
+            var data = db.Client.Find(id);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
+        [Route("type5/{id}")]
+        public HttpResponseMessage GetClientTyp5(int id)
+        {
+            var data = db.Client.Find(id);
+            return new HttpResponseMessage()
+            {
+                StatusCode = HttpStatusCode.OK
+                ,Content = new ObjectContent<Client>(data,GlobalConfiguration.Configuration.Formatters.JsonFormatter)
+            };
+        }
+
+        [Route("type6/{id}")]
+        public HttpResponseMessage GetClientTyp6(int id)
+        {
+            var data = db.Client.Find(id);
+            return new HttpResponseMessage()
+            {
+                StatusCode = HttpStatusCode.OK
+                ,
+                ReasonPhrase = "Hello World"
+                ,
+                Content = new ObjectContent<Client>(data, GlobalConfiguration.Configuration.Formatters.JsonFormatter)
+            };
+        }
+
+        [Route("type7/{id}")]
+        public HttpResponseMessage GetClientTyp7(int id)
+        {
+            var data = db.Client.Find(id);
+            var res = new HttpResponseMessage()
+            {
+                StatusCode = HttpStatusCode.OK
+                ,
+                ReasonPhrase = "Hello World"
+                ,
+                Content = new ObjectContent<Client>(data, GlobalConfiguration.Configuration.Formatters.JsonFormatter)
+            };
+
+            res.Headers.Add("Hello","test");
+
+            return res;
+        }
+
         [Route("{id}/Orders")]
         public IHttpActionResult GetClientOrders(int id)
         {
