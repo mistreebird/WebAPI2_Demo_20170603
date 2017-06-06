@@ -38,6 +38,18 @@ namespace WebAPI2_Demo_20170603.Controllers
             return Ok(client);
         }
 
+        [Route("type2/{id}")]
+        public Client GetClientType2(int id)
+        {
+            return db.Client.Find(id);
+        }
+
+        [Route("type3/{id}")]
+        public IHttpActionResult GetClientType3(int id)
+        {
+            return Json(db.Client.Find(id));
+        }
+
         [Route("{id}/Orders")]
         public IHttpActionResult GetClientOrders(int id)
         {
