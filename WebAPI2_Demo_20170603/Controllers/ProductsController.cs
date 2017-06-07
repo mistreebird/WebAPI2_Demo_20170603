@@ -12,6 +12,7 @@ using WebAPI2_Demo_20170603.Models;
 
 namespace WebAPI2_Demo_20170603.Controllers
 {
+    [WebApiExceptionFilter]
     public class ProductsController : ApiController
     {
         private FabricsEntities db = new FabricsEntities();
@@ -83,6 +84,11 @@ namespace WebAPI2_Demo_20170603.Controllers
 
             item.ProductName = product.ProductName;
             item.Price = product.Price;
+
+            if (item.Price > 1000)
+            {
+                throw new Exception("單價過高不得超過100");
+            }
 
             try
             {
