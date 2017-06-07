@@ -12,6 +12,7 @@ using WebAPI2_Demo_20170603.Models;
 
 namespace WebAPI2_Demo_20170603.Controllers
 {
+    [ValidateModel]
     public class ProductsController : ApiController
     {
         private FabricsEntities db = new FabricsEntities();
@@ -74,11 +75,6 @@ namespace WebAPI2_Demo_20170603.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PatchProduct(int id, ProductPatchModel product)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             if (id != product.ProductId)
             {
                 return BadRequest();
