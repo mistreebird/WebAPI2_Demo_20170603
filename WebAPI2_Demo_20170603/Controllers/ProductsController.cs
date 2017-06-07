@@ -12,7 +12,6 @@ using WebAPI2_Demo_20170603.Models;
 
 namespace WebAPI2_Demo_20170603.Controllers
 {
-    [WebApiExceptionFilter]
     public class ProductsController : ApiController
     {
         private FabricsEntities db = new FabricsEntities();

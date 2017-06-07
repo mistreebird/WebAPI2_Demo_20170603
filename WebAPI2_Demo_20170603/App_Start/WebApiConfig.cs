@@ -23,6 +23,8 @@ namespace WebAPI2_Demo_20170603
 
             // 動作過濾器
             config.Filters.Add(new ValidateModelAttribute());
+            // 例外過濾器
+            config.Filters.Add(new WebApiExceptionFilterAttribute());
         }
     }
 }
