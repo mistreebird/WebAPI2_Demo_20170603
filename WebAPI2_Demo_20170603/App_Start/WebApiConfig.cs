@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using WebAPI2_Demo_20170603.Controllers;
 
 namespace WebAPI2_Demo_20170603
 {
@@ -19,6 +20,9 @@ namespace WebAPI2_Demo_20170603
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            // 動作過濾器
+            config.Filters.Add(new ValidateModelAttribute());
         }
     }
 }
