@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using WebAPI2_Demo_20170603.Controllers;
+using System.Web.Http.Cors;
 
 namespace WebAPI2_Demo_20170603
 {
@@ -25,6 +26,10 @@ namespace WebAPI2_Demo_20170603
             config.Filters.Add(new ValidateModelAttribute());
             // 例外過濾器
             config.Filters.Add(new WebApiExceptionFilterAttribute());
+            // 設定CORS
+            //var cors = new EnableCorsAttribute(origins: "*", headers: "*", methods: "*");
+            //config.EnableCors(cors);
+            config.EnableCors();
         }
     }
 }

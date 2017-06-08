@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebAPI2_Demo_20170603.Models;
+using System.Web.Http.Cors;
 
 namespace WebAPI2_Demo_20170603.Controllers
 {
@@ -16,6 +17,7 @@ namespace WebAPI2_Demo_20170603.Controllers
     {
         private FabricsEntities db = new FabricsEntities();
 
+        [EnableCors(origins: "*", methods: "*", headers: "*")]
         // GET: api/Products
         public IQueryable<Product> GetProduct()
         {
