@@ -17,7 +17,6 @@ namespace WebAPI2_Demo_20170603.Controllers
     {
         private FabricsEntities db = new FabricsEntities();
 
-        [EnableCors(origins: "*", methods: "*", headers: "*")]
         // GET: api/Products
         public IQueryable<Product> GetProduct()
         {

@@ -27,9 +27,8 @@ namespace WebAPI2_Demo_20170603
             // 例外過濾器
             config.Filters.Add(new WebApiExceptionFilterAttribute());
             // 設定CORS
-            //var cors = new EnableCorsAttribute(origins: "*", headers: "*", methods: "*");
-            //config.EnableCors(cors);
-            config.EnableCors();
+            var cors = new EnableCorsAttribute(origins: "*", headers: "*", methods: "*");
+            config.EnableCors(cors);
         }
     }
 }
